@@ -47,6 +47,7 @@ $ helm install cert-manager jetstack/cert-manager `
 * Issuer은 단일 네임스페이스에서 작동하고 ClusterIssuer은 모든 네임스페이스에서 작동한다.
 ```
 $ kubectl apply -f cluster-issuer.yaml
+$ kubectl get clusterissuer
 ```
 
 ## 3) Ingress 생성
@@ -55,6 +56,7 @@ $ kubectl apply -f cluster-issuer.yaml
 * wordpress 애플리케이션으로 트래픽을 라우팅하는 규칙을 구성한다.
 ```
 $ kubectl apply -f ingress-nginx.yaml
+$ kubectl get ingress -n ingress-nginx
 ```
 
 ```
@@ -63,4 +65,8 @@ spec:
   - hosts: 
     - wordpress.jyeclc.com  // 인증서를 적용할 도메인 주소
     secretName: tls-secret  // 인증서 key가 저장되는 secret으로 별도의 사전 생성 없이 cert-manager에 의해 자동 생성된다.
+ ```
+ ```
+ $ kubectl get certificate -n ingress-nginx
+ $ kubectl get secret -n ingress-nginx
  ```
