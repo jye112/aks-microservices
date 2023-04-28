@@ -28,6 +28,9 @@ helm install akv2k8s spv-charts/akv2k8s --namespace akskeyvault
 * Azure key vault Secret을 쿠버네티스 클러스터 내에 Secret으로 생성하기 위한 리소스이다.
 * 반드시 애플리케이션이 배포되는 Namespace와 동일한 Namespace에 배포해야 한다.
 ```
+$ kubectl apply -f keyvaultsecret.yaml
+```
+```
 spec:
   vault:
     name: jyeakskeyvault01  // Azure Key vault 이름

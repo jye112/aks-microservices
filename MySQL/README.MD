@@ -2,6 +2,10 @@
 Wordpress 웹 페이지 구성 시 필요한 데이터를 포함하는 Database Layer 이다.
 
 ## mysql.yaml
+```
+$ kubectl apply -f mysql.yaml
+```
+
 * Statefulset 으로 배포
   * Statefulset은 파드를 재실행 해도 상태 값이 유지되며 PV/PVC를 각각의 파드에 1:1로 배치할 수 있다.
   * 각각의 파드 당 볼륨을 할당할 수 있으므로 볼륨 공유에 따른 충돌 발생을 방지할 수 있다.
