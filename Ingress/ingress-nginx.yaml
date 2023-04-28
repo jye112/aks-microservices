@@ -12,7 +12,7 @@ spec:
   tls:
   - hosts: 
     - wordpress.jyeclc.com
-    secretName: letsencrypt-staging
+    secretName: tls-secret
   ingressClassName: nginx
   rules:
   - host: wordpress.jyeclc.com
