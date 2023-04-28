@@ -28,19 +28,20 @@ helm install akv2k8s spv-charts/akv2k8s --namespace akskeyvault
 * Azure key vault Secret을 쿠버네티스 클러스터 내에 Secret으로 생성하기 위한 리소스이다.
 * 반드시 애플리케이션이 배포되는 Namespace와 동일한 Namespace에 배포해야 한다.
 ```
-$ kubectl apply -f keyvaultsecret.yaml
+$ kubectl apply -f db-password.yaml
+$ kubectl apply -f grafana-password.yaml
 ```
 ```
 spec:
   vault:
-    name: jyeakskeyvault01  // Azure Key vault 이름
+    name: jyeakskeyvault01    // Azure Key vault 이름
     object:
-      name: db-secret       // Azure Key vault Secret 이름
+      name: db-secret         // Azure Key vault Secret 이름
       type: secret
   output:
     secret: 
-      name: password       // Kubernetes Secret 이름
-      dataKey: password    // Kubernetes Secret dataKey 값 (type이 opaque인 경우 필요)
+      name: db-password       // Kubernetes Secret 이름
+      dataKey: password       // Kubernetes Secret dataKey 값 (type이 opaque인 경우 필요)
       type: opaque
 ```
 * 생성된 AzureKeyvaultSecret과 쿠버네티스의 Secret을 확인한다.
@@ -50,6 +51,7 @@ $ kubectl get azurekeyvaultsecret
 ```
 
 ## 4) 애플리케이션에서 Secret 참조
+* MySQL 컨테이너를 배포할 때 환경변수 값을 명시하는 과정에서 쿠버네티스 클러스터 내에 생성된 Secret을 참조한다.(Password 같이 보안이 중요한 값들의 경우) 
 ```
 - name: MYSQL_PASSWORD
     valueFrom:
@@ -57,4 +59,10 @@ $ kubectl get azurekeyvaultsecret
         name: password
         key: password
 ```
-* MySQL 컨테이너를 배포할 때 환경변수 값을 명시하는 과정에서 쿠버네티스 클러스터 내에 생성된 Secret을 참조한다.(Password 같이 보안이 중요한 값들의 경우) 
+* Helm으로 Grafana 설치 시 values.yaml에서 Secret과 Secret의 data key 값을 참조할 수 있다.
+```
+admin:
+  existingSecret: grafana-password
+  userKey: admin
+  passwordKey: password
+```
