@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - image: wordpress:5.5.3-apache
+        name: wordpress
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: 'mysql'
+        - name: WORDPRESS_DB_NAME
+          value: wordpressdb
+        - name: WORDPRESS_DB_USER
+          value: wpadmin
+        - name: WORDPRESS_DB_PASSWORD
+          value: dkagh1.
+        ports:
+        - containerPort: 80
+          name: wordpress
+        resources:
+          requests:
+            cpu: 250m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 256Mi
+        volumeMounts:
+        - mountPath: "/var/www/html" 
+          name: wordpress-pv
+      volumes:
+      - name: wordpress-pv
+        persistentVolumeClaim:
+          claimName: wordpress-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+ name: wordpress-pvc
+spec:
+ accessModes: [ "ReadWriteMany" ]
+ storageClassName: "azurefile-premium"  
+ resources:
+   requests:
+     storage: 5Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: wordpress
+spec:
+ type: ClusterIP
+ ports:
+ - port: 80
+ selector:
+   app: wordpress
