@@ -1,13 +1,13 @@
 # Ingress
-- 클러스터 외부의 네트워크로부터 액세스 받기 위한 컨트롤러로 L7 로드밸런서에 해당한다.
-- Ingress Controller는 외부로부터 네트워크 요청을 수신했을 때 Ingress 규칙에 기반해 이 요청을 어떻게 처리할지 결정하고 이를 통해 Ingress에 적용된 규칙이 활성화된다.
-- External IP(Public IP)가 붙어 서비스 된다.
+* 클러스터 외부의 네트워크로부터 액세스 받기 위한 컨트롤러로 L7 로드밸런서에 해당한다.
+* Ingress Controller는 외부로부터 네트워크 요청을 수신했을 때 Ingress 규칙에 기반해 이 요청을 어떻게 처리할지 결정하고 이를 통해 Ingress에 적용된 규칙이 활성화된다.
+* External IP(Public IP)가 붙어 서비스 된다.
 
 # Ingress Controller
-- Ingress 규칙이 동작하게 하기 위한 컨트롤러
-- 외부로부터 네트워크 요청을 수신했을 때 Ingress 규칙에 기반해 이 요청을 어떻게 처리할지 결정하고 이를 통해 Ingress에 적용된 규칙이 활성화된다.
+* Ingress 규칙이 동작하게 하기 위한 컨트롤러이다.
+* 외부로부터 네트워크 요청을 수신했을 때 Ingress 규칙에 기반해 이 요청을 어떻게 처리할지 결정하고 이를 통해 Ingress에 적용된 규칙이 활성화된다.
 
-## Ingress Controller 설치 방법
+* Ingress Controller 설치 방법
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
 ```
@@ -50,5 +50,18 @@ $ helm install cert-manager jetstack/cert-manager `
 ```
 $ kubectl apply -f cluster-issuer.yaml
 ```
-* 발급된 인증서를 확인한다.
-![image](https://user-images.githubusercontent.com/50107548/235066345-4636bafc-6264-42a3-a91d-cca771d054a1.png)
+
+## 3) Ingress 만들기
+* 두 애플리케이션은 실행되지만 ClusterIP 형식의 서비스로 구성되며 인터넷에서 액세스할 수 없다.
+* 애플리케이션을 공개적으로 사용할 수 있도록  Kubernetes Ingrss 리소스를 만든다.
+* wordpress 애플리케이션으로 트래픽을 라우팅하는 규칙을 구성한다.
+
+```
+spec:
+  tls:
+  - hosts: 
+    - wordpress.jyeclc.com
+    secretName: tls-secret
+ ```
+ * 호스트 주소를 인증서를 적용할 도메인 주소로 넣어준다.
+ * secretName은 인증서 key가 저장되는 secret으로 별도의 사전 생성 없이 cert-manager에 의해 자동 생성된다.
