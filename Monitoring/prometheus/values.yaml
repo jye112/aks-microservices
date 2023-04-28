@@ -1,7 +1,7 @@
 prometheus:
   ingress:
     enabled: true
-    hostname: prometheus.wordpress.jyeclc.com
+    hostname: prometheus.wordpress.jyeclc.com  # NGINX Ingress 주소를 사용한다.
     path: /
     annotations:
       kubernetes.io/ingress.class: nginx
@@ -10,7 +10,7 @@ prometheus:
 alertmanager:
   ingress:
     enabled: true
-    hostname: alert.wordpress.jyeclc.com
+    hostname: alert.wordpress.jyeclc.com      # NGINX Ingress 주소를 사용한다.
     path: /
     annotations:
       kubernetes.io/ingress.class: nginx

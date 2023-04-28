@@ -4,7 +4,7 @@ admin:
   passwordKey: password
 ingress:
   enabled: true
-  hostname: grafana.wordpress.jyeclc.com
+  hostname: grafana.wordpress.jyeclc.com  # NGINX Ingress 주소를 사용한다.
   path: /
   annotations:
     kubernetes.io/ingress.class: nginx
