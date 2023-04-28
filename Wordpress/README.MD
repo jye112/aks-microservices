@@ -1,4 +1,6 @@
 # Frontend - Wordpress(WEB)
+Wordpress 웹 페이지에 해당하는 Web Layer 이다.
+
 ## wordpress.yaml
 * Deployment로 배포
   * Deployment는 Stateless 성격을 가지고 있으며 파드들이 하나의 볼륨을 공유한다.
