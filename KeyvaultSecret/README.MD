@@ -23,6 +23,7 @@ helm install akv2k8s spv-charts/akv2k8s --namespace akskeyvault
 ```
 
 ## 3) AzureKeyvaultSecret 생성
+* Azure key vault Secret을 클러스터 내에 Secret으로 생성하기 위한 리소스이다.
 * 반드시 애플리케이션이 배포되는 Namespace와 동일한 Namespace에 배포해야 한다.
 
 ## 4) 애플리케이션에서 Secret 참조
