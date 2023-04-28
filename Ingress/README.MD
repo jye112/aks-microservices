@@ -12,7 +12,7 @@
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
 ```
 
-### <참고> Ingress 생성 시 admission 관련 오류 발생했을 때
+<참고> Ingress 생성 시 admission 관련 오류 발생했을 때
 ```
 kubectl delete validatingwebhookconfiguration ingress-nginx-admission
 ```
