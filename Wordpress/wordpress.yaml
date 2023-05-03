@@ -15,7 +15,7 @@ spec:
         app: wordpress
     spec:
       containers:
-      - image: wordpress:5.5.3-apache
+      - image: jyeacr01.azurecr.io/wordpress:v1
         name: wordpress
         env:
         - name: WORDPRESS_DB_HOST
@@ -25,10 +25,11 @@ spec:
         - name: WORDPRESS_DB_USER
           value: wpadmin
         - name: WORDPRESS_DB_PASSWORD
-          valueFrom: 
-            secretKeyRef:
-              name: db-password
-              key: password
+          value: dkagh1.
+          # valueFrom: 
+          #   secretKeyRef:
+          #     name: db-password
+          #     key: password
         ports:
         - containerPort: 80
           name: wordpress
@@ -63,7 +64,7 @@ kind: Service
 metadata:
  name: wordpress
 spec:
- type: ClusterIP
+ type: LoadBalancer
  ports:
  - port: 80
  selector:

@@ -20,10 +20,11 @@ spec:
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
-          valueFrom: 
-            secretKeyRef:
-              name: db-password
-              key: password
+          value: 'dkagh1.'
+          # valueFrom: 
+          #   secretKeyRef:
+          #     name: db-password
+          #     key: password
         - name: MYSQL_DATABASE
           value: wordpressdb
         - name: MYSQL_USER
@@ -31,10 +32,11 @@ spec:
         - name: MYSQL_ROOT_HOST
           value: '%'
         - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: db-password
-              key: password
+          value: 'dkagh1.'
+          # valueFrom:
+          #   secretKeyRef:
+          #     name: db-password
+          #     key: password
         ports:
         - containerPort: 3306
           name: mysql
