@@ -1,6 +1,6 @@
 # Architecture
 
-# Reference
+# Jenkins
 ### Azure Linux VM에 Jenkins 배포
 https://learn.microsoft.com/ko-kr/azure/developer/jenkins/configure-on-linux-vm
 
