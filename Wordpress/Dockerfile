@@ -1,2 +1,2 @@
 FROM wordpress:5.5.3-apache
-ADD index.html /var/www/html/
+COPY index.php /var/www/html/index.php
