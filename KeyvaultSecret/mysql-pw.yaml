@@ -1,15 +1,15 @@
 apiVersion: spv.no/v1alpha1
 kind: AzureKeyVaultSecret
 metadata:
-  name: db-password
+  name: mysql-pw
 spec:
   vault:
-    name: jyeakskeyvault01
+    name: jyekeyvault01
     object:
-      name: db-secret
+      name: mysql-pw
       type: secret
   output:
     secret: 
-      name: db-password
+      name: mysql-pw
       dataKey: password
       type: opaque

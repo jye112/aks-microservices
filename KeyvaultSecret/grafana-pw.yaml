@@ -1,15 +1,15 @@
 apiVersion: spv.no/v1alpha1
 kind: AzureKeyVaultSecret
 metadata:
-  name: grafana-password
+  name: grafana-pw
 spec:
   vault:
-    name: jyeakskeyvault01
+    name: jyekeyvault01
     object:
-      name: grafana-secret
+      name: grafana-pw
       type: secret
   output:
     secret: 
-      name: grafana-password
+      name: grafana-pw
       dataKey: password
       type: opaque
