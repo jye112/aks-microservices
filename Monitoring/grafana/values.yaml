@@ -1,0 +1,12 @@
+admin:
+  existingSecret: grafana-password
+  userKey: admin
+  passwordKey: password
+ingress:
+  enabled: true
+  hostname: grafana.wordpress.jyeclc.com  # NGINX Ingress 주소를 사용한다.
+  path: /
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+  tls: true
