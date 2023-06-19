@@ -1,5 +1,5 @@
 # Architecture
-![image](https://github.com/jye112/wordpress/assets/50107548/763b20fb-4e5e-4e5f-a128-8419b3040124)
+![image](https://github.com/jye112/wordpress/assets/50107548/6d419223-d35e-4cea-8493-1ae9fa37909b)
 
 # Jenkins
 ### Azure Linux VM에 Jenkins 배포
