@@ -18,3 +18,7 @@ $ helm install prometheus -n monitoring -f values.yaml bitnami/kube-prometheus
 $ helm install grafana -n monitoring -f values.yaml bitnami/grafana
 
 ```
+
+
+# ELK(ElasticSearch / Logstash / Kibana) 구성
+Logstash가 애플리케이션 관련 로그를 수집하면 ElasticSearch가 해당 로그 데이터를 저장하고, Kibana를 통해 시각화(대시보드) 한다.
